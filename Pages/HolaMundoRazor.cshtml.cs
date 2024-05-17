@@ -5,6 +5,7 @@ namespace introduccion_razor.Pages
 {
     public class HolaMundoRazorModel : PageModel
     {
+
         public void OnGet()
         {
         }

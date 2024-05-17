@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 namespace introduccion_razor.Pages
 {
+
     public class imcModel : PageModel
     {
         // Definimos propiedades

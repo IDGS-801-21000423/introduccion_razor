@@ -5,6 +5,7 @@ namespace introduccion_razor.Pages
 {
     public class SumaNumerosModel : PageModel
     {
+
         // Definimos propiedades
         // Vincular propiedades con campos del formulario con [BindProperty]
         [BindProperty]

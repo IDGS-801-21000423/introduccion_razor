@@ -7,6 +7,7 @@ namespace introduccion_razor.Pages
 {
     public class SumatoriaModel : PageModel
     {
+
         [BindProperty]
         public double A {  get; set; }
 
@@ -22,6 +23,7 @@ namespace introduccion_razor.Pages
         [BindProperty]
         public int N { get; set; }
         public List<string> Results { get; private set; } = new List<string>();
+
         public void OnPost()
         {
             double sum = 0;
