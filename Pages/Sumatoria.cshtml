@@ -1,0 +1,33 @@
+﻿@page
+@model introduccion_razor.Pages.SumatoriaModel
+@{
+}
+<h3>Evaluar la expresion (ax + by)^n</h3>
+<form method="post">
+    <div>
+        <p>Valor de A: <input type="number" required asp-for="A"/></p>
+    </div>
+    <div>
+        <p>Valor de B: <input type="number" required asp-for="B" /></p>
+    </div>
+    <div>
+        <p>Valor de X: <input type="number" required asp-for="X" /></p>
+    </div>
+    <div>
+        <p>Valor de Y: <input type="number" required asp-for="Y" /></p>
+    </div>
+    <div>
+        <p>Valor de N: <input type="number" required asp-for="N" /></p>
+    </div>
+    <div>
+        <input type="submit" value="Calcular" />
+    </div>
+</form>
+@if (Model.Results != null)
+{
+    foreach (var result in Model.Results)
+    {
+        <div>@result</div>
+    }
+}
+

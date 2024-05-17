@@ -1,0 +1,44 @@
+﻿@page
+@model introduccion_razor.Pages.CiclosModel
+@{
+}
+<h3>Ejemplo de Ciclo While</h3>
+@{
+    var count = 1;
+    while(count <= 10)
+    {
+        <p>@count</p>
+        count += 1;
+    }
+}
+<br />
+
+<h3>Ejemplo de ciclo Do While</h3>
+@{
+    count = 1;
+    do
+    {
+        <p>@count</p>
+        count += 1;
+    }
+    while(count <= 10);
+}
+<br />
+
+<h3>Ejemplo de ciclo For</h3>
+
+    @for(var i = 0; i < 21; i++)
+    {
+        <p>@i</p>
+    }
+
+<br />
+
+<h3>Ejemplo de ciclo For Each</h3>
+<ul>
+    @foreach(var x in HttpContext.Request.Headers)
+    {
+        <li>@x</li>
+    }
+</ul>
+<br />

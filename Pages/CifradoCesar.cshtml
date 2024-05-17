@@ -1,0 +1,27 @@
+﻿@page
+@model introduccion_razor.Pages.CifradoCesarModel
+@{
+}
+<h3>Cifrado Cesar</h3>
+<form method="post">
+    <div>
+        <p>Número desplazamiento:<input type="number" required asp-for="shift"/></p>
+    </div>
+    <div>
+        <p>Mensaje:</p>
+        <textarea rows="4" cols="50" required asp-for="message"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Cifrar" name="action"/>
+        <input type="submit" value="Descifrar" name="action" />
+    </div>
+</form>
+
+@if(Model.result != null)
+{
+    <div>
+        <h3>Resultado:</h3>
+        <p>@Model.result</p>
+    </div>
+}
+

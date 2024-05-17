@@ -1,0 +1,75 @@
+﻿@page
+@model introduccion_razor.Pages.imcModel
+@{
+}
+<h3>Calculo de Índice de Masa Corporal:</h3>
+<form method="post">
+    <p>Ingrese su peso en Kg:<input type="number" step="0.1" asp-for="pesokg" required/></p>
+    <p>Ingrese su altura en Cm:<input type="number" step="0.1" asp-for="alturacm" required/></p>
+    <p><input type="submit" value="Calcular"/></p>
+    
+    @if(Model.imc == 0)
+    {
+        <div>
+            <strong>Imc: :)</strong>
+        </div>
+    }
+    @if (Model.imc > 0 && Model.imc < 18)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-PESOBAJO.png" alt="Peso Bajo" width="500px" height="330px" />
+        </div>
+    }
+    else if (Model.imc >= 18 && Model.imc < 25)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-PESONORMAL.png" alt="Peso Normal" width="500px" height="330px" />
+        </div>
+    }
+    else if (Model.imc >= 25 && Model.imc < 27)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-SOBREPESO.png" alt="Sobrepeso" width="500px" height="330px" />
+        </div>
+    }
+    else if (Model.imc >= 27 && Model.imc < 30)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-OBESIDAD1.png" alt="Obesidad I" width="500px" height="330px" />
+        </div>
+    }
+    else if (Model.imc >= 30 && Model.imc < 40)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-OBESIDAD2.png" alt="Obesidad II" width="500px" height="330px" />
+        </div>
+    }
+    else if (Model.imc >= 40)
+    {
+        <div>
+            <strong>Imc: @Model.imc</strong>
+            <br />
+            <br />
+            <img src="img/IMC-OBESIDAD3.1.png" alt="Obesidad III" width="500px" height="330px" />
+        </div>
+    }
+</form>
+
+<!--
+<img src="img/IMC-PESOBAJO.png" alt="Alternate Text" width="500px" height="330px"/>
+-->

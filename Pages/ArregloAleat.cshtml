@@ -1,0 +1,123 @@
+﻿@page
+@model introduccion_razor.Pages.ArregloAleatModel
+@{
+    int[] numerosAleatorios = new int[20];
+    int[] numerosOrdenados;
+    Random rand = new Random();
+
+    // Llenamos el arreglo con numeros aleatorios del 1 al 100
+    for (int i = 0; i < numerosAleatorios.Length; i++)
+    {
+        numerosAleatorios[i] = rand.Next(1, 100);
+    }
+
+    // Crear copia del arreglo y ordenarlo
+    numerosOrdenados = (int[])numerosAleatorios.Clone();
+    Array.Sort(numerosOrdenados);
+
+    // Calcular la suma
+    int suma = numerosOrdenados.Sum();
+
+    // Calcular el promedio
+    double promedio = numerosOrdenados.Average();
+
+    // Calculamos la moda
+    var frecuencias = new Dictionary<int, int>();
+    foreach(var num in numerosOrdenados)
+    {
+        if(frecuencias.ContainsKey(num))
+        {
+            frecuencias[num]++;
+        }
+        else
+        {
+            frecuencias[num] = 1;
+        }
+    }
+    int maxFrecuencia = 0;
+    List<int> modas = new List<int>();
+
+    foreach(var par in frecuencias)
+    {
+        if(par.Value > maxFrecuencia)
+        {
+            maxFrecuencia = par.Value;
+            //Limpiamos la lista y agregamos la nueva moda
+            modas.Clear();
+            modas.Add(par.Key);
+        }
+        else if(par.Value == maxFrecuencia)
+        {
+            // Si la frecuencia es igual a la maxima frecuencia agreagmos el numero a la lista de modas
+            modas.Add(par.Key);
+        }
+    }
+    string modasString;
+    if (maxFrecuencia > 1)
+    {
+        // Unimos todas las modas en una cadena
+        modasString = string.Join(", ", modas);
+    }
+    else
+    {
+        modasString = "No se encontró ninguna moda";
+    }
+
+    // Calcular la mediana
+    double mediana;
+    int medianaPos1 = 0, medianaPos2 = 0;
+    if (numerosOrdenados.Length % 2 == 0)
+    {
+        medianaPos1 = numerosOrdenados.Length / 2 - 1;
+        medianaPos2 = numerosOrdenados.Length / 2;
+        mediana = (numerosOrdenados[medianaPos1] + numerosOrdenados[medianaPos2]) / 2.0;
+        //mediana = (numerosOrdenados[numerosOrdenados.Length / 2 - 1] + numerosOrdenados[numerosOrdenados.Length / 2]) / 2.0;
+    }
+    else
+    {
+        medianaPos1 = numerosOrdenados.Length / 2;
+        mediana = numerosOrdenados[medianaPos1];
+        //mediana = numerosOrdenados[numerosOrdenados.Length / 2];
+    }
+}
+
+<h3>Arreglo Aleatorio:</h3>
+<table border="1">
+    <tr>
+        @for (int i = 0; i < numerosAleatorios.Length; i++)
+        {
+            
+                <td style="border:solid; padding: 2px;">@numerosAleatorios[i]</td>
+        }
+    </tr>
+</table>
+<br />
+<h3>Arreglo Ordenado:</h3>
+<table border="1">
+    <tr>
+        @for (int i = 0; i < numerosOrdenados.Length; i++)
+        {
+            
+            if(i == medianaPos1 || i == medianaPos2)
+            {                
+                <td style="border:solid; padding: 2px; color:red;">@numerosOrdenados[i]</td>
+            }
+            else if(modas.Contains(numerosOrdenados[i]))
+            {
+                <td style="border:solid; padding: 2px; color:blue;">@numerosOrdenados[i]</td>
+            }
+            else
+            {
+                <td style="border:solid; padding: 2px; color:black;">@numerosOrdenados[i]</td>
+            }
+
+        }
+    </tr>
+</table>
+<br />
+<h4>Suma del arreglo: @suma</h4>
+<h4>Promedio del arreglo: @promedio</h4>
+<h4 style="color:blue;">Moda del arreglo: @modasString</h4>
+<h4 style="color: red;">Mediana del arreglo: @mediana</h4>
+
+
